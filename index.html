@@ -3,33 +3,380 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>White Sand Club</title>
-
+<title>White Sand Club — Praia da Areia Branca, Lourinhã</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Big+Shoulders+Display:wght@500;700;800&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-html,body{
+  :root{
+    --ink:#16303B;
+    --ink-2:#0F252E;
+    --foam:#F6F2E8;
+    --foam-2:#EFE8D8;
+    --dune:#D8C9A3;
+    --driftwood:#6B5A44;
+    --rust:#C1502E;
+    --sea:#3E7C82;
+    --line: rgba(22,48,59,.14);
+    --line-light: rgba(246,242,232,.22);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
     margin:0;
-    width:100%;
-    height:100%;
-    background:#fff;
-}
+    background:var(--foam);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    margin:0;
+    font-weight:600;
+    letter-spacing:-.01em;
+  }
+  .eyebrow{
+    font-family:'Big Shoulders Display', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:.14em;
+    font-weight:700;
+    font-size:.8rem;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px;}
 
-body{
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:100svh;
+    background:radial-gradient(ellipse 120% 80% at 50% -10%, #1E4655 0%, var(--ink) 55%, var(--ink-2) 100%);
+    color:var(--foam);
     display:flex;
+    flex-direction:column;
     justify-content:center;
-    align-items:center;
-}
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image:
+      radial-gradient(1px 1px at 20% 30%, rgba(246,242,232,.35) 0, transparent 60%),
+      radial-gradient(1px 1px at 70% 60%, rgba(246,242,232,.25) 0, transparent 60%),
+      radial-gradient(1.5px 1.5px at 85% 20%, rgba(246,242,232,.3) 0, transparent 60%),
+      radial-gradient(1px 1px at 40% 80%, rgba(246,242,232,.25) 0, transparent 60%);
+    pointer-events:none;
+  }
+  .hero-inner{position:relative; z-index:2; text-align:center; padding:120px 28px 160px;}
+  .hero .eyebrow{color:var(--dune); margin-bottom:22px; display:block;}
+  .hero h1{
+    font-size:clamp(3.2rem, 9vw, 7.5rem);
+    line-height:.92;
+    font-weight:600;
+  }
+  .hero h1 em{font-style:italic; font-weight:500; color:var(--dune);}
+  .hero p.lede{
+    max-width:520px; margin:28px auto 0;
+    font-size:1.05rem; line-height:1.6;
+    color:rgba(246,242,232,.75);
+  }
+  .hero .scroll-cue{
+    position:absolute; bottom:36px; left:50%; transform:translateX(-50%);
+    font-family:'Big Shoulders Display'; letter-spacing:.14em; text-transform:uppercase;
+    font-size:.75rem; color:rgba(246,242,232,.55);
+    display:flex; flex-direction:column; align-items:center; gap:10px;
+  }
+  .scroll-cue .line{width:1px;height:36px;background:linear-gradient(rgba(246,242,232,.7), transparent); animation:pulse 2s ease-in-out infinite;}
+  @keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
 
-img{
-    max-width:100%;
-    max-height:100%;
-}
+  .tide{display:block; width:100%; height:auto; margin-top:-2px;}
+
+  /* ---------- SIGNPOST NAV ---------- */
+  .signpost{
+    background:var(--foam-2);
+    padding:64px 0 56px;
+    border-bottom:1px solid var(--line);
+  }
+  .signpost .kicker{text-align:center; color:var(--driftwood); margin-bottom:34px;}
+  .signpost .kicker h2{font-size:1.6rem; font-style:italic; font-weight:500; margin-top:8px;}
+  .posts{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:18px;
+  }
+  .post{
+    position:relative;
+    background:var(--ink);
+    color:var(--foam);
+    padding:22px 18px;
+    border-radius:2px;
+    transform:rotate(var(--r,0deg));
+    box-shadow:0 10px 24px -12px rgba(22,48,59,.4);
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .post:nth-child(1){--r:-1.4deg;}
+  .post:nth-child(2){--r:1deg;}
+  .post:nth-child(3){--r:-.8deg;}
+  .post:nth-child(4){--r:1.6deg;}
+  .post:hover{transform:rotate(0deg) translateY(-4px); box-shadow:0 18px 30px -14px rgba(22,48,59,.5);}
+  .post::after{
+    content:"→";
+    position:absolute; right:14px; top:14px;
+    font-size:1.1rem; color:var(--rust);
+  }
+  .post .n{font-family:'Big Shoulders Display'; font-size:.75rem; letter-spacing:.12em; color:var(--dune); text-transform:uppercase;}
+  .post .t{font-family:'Fraunces'; font-size:1.28rem; margin-top:6px; line-height:1.15;}
+
+  /* ---------- VENUE SECTIONS ---------- */
+  .venue{
+    padding:110px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .venue:nth-child(even){background:var(--foam-2);}
+  .venue-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center;
+  }
+  .venue.reverse .venue-grid{direction:rtl;}
+  .venue.reverse .venue-grid > *{direction:ltr;}
+  .photo-block{
+    aspect-ratio:4/5;
+    border-radius:4px;
+    position:relative;
+    overflow:hidden;
+    display:flex; align-items:flex-end;
+    padding:24px;
+  }
+  .photo-block .ph-label{
+    font-family:'Big Shoulders Display'; text-transform:uppercase; letter-spacing:.1em;
+    font-size:.72rem; color:rgba(246,242,232,.85);
+    border:1px solid rgba(246,242,232,.4);
+    padding:6px 10px; border-radius:100px;
+  }
+  .photo-block.p1{background:linear-gradient(155deg,#2C5C6B,#12313D 70%);}
+  .photo-block.p2{background:linear-gradient(155deg,#3E7C82,#173238 70%);}
+  .photo-block.p3{background:linear-gradient(155deg,#C1502E,#7A2E17 70%);}
+  .photo-block.p4{background:linear-gradient(155deg,#8B7038,#3E3018 70%);}
+
+  .venue .tag{
+    display:inline-block; font-family:'Big Shoulders Display'; text-transform:uppercase;
+    letter-spacing:.12em; font-size:.75rem; font-weight:700;
+    padding:5px 12px; border-radius:100px; margin-bottom:18px;
+  }
+  .tag.tag-1{background:rgba(62,124,130,.15); color:var(--sea);}
+  .tag.tag-2{background:rgba(62,124,130,.15); color:var(--sea);}
+  .tag.tag-3{background:rgba(193,80,46,.15); color:var(--rust);}
+  .tag.tag-4{background:rgba(107,90,68,.18); color:var(--driftwood);}
+
+  .venue h3{font-size:clamp(2.2rem,4vw,3rem); margin-bottom:18px;}
+  .venue .desc{color:var(--driftwood); line-height:1.7; font-size:1.02rem; max-width:46ch;}
+  .venue .meta{
+    margin:28px 0 0; padding:0; list-style:none;
+    display:flex; flex-direction:column; gap:10px;
+    font-size:.94rem;
+  }
+  .venue .meta li{display:flex; gap:10px; color:var(--ink);}
+  .venue .meta .k{font-family:'Big Shoulders Display'; text-transform:uppercase; letter-spacing:.08em; font-size:.72rem; color:var(--driftwood); min-width:88px; padding-top:2px;}
+  .actions{display:flex; gap:12px; margin-top:30px; flex-wrap:wrap;}
+  .btn{
+    font-family:'Big Shoulders Display'; text-transform:uppercase; letter-spacing:.08em;
+    font-size:.8rem; font-weight:700;
+    padding:12px 20px; border-radius:100px;
+    border:1.5px solid var(--ink);
+    display:inline-flex; align-items:center; gap:8px;
+    transition:background .2s ease, color .2s ease;
+  }
+  .btn.solid{background:var(--ink); color:var(--foam);}
+  .btn.solid:hover{background:var(--rust); border-color:var(--rust);}
+  .btn.ghost:hover{background:var(--ink); color:var(--foam);}
+  .note{
+    margin-top:18px; font-size:.82rem; color:var(--driftwood); font-style:italic; opacity:.8;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:var(--ink); color:var(--foam);
+    padding:80px 0 40px;
+  }
+  .foot-top{display:grid; grid-template-columns:1.3fr .9fr .9fr .9fr; gap:40px; padding-bottom:56px; border-bottom:1px solid var(--line-light);}
+  footer h2{font-size:2rem;}
+  footer .lede{color:rgba(246,242,232,.65); margin-top:14px; line-height:1.6; max-width:34ch;}
+  .foot-col .eyebrow{color:var(--dune); margin-bottom:16px; display:block;}
+  .foot-list{list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:12px;}
+  .foot-list a{color:rgba(246,242,232,.82); font-size:.95rem;}
+  .foot-list a:hover{color:var(--rust);}
+  .foot-bottom{
+    display:flex; justify-content:space-between; align-items:center; padding-top:28px;
+    font-size:.8rem; color:rgba(246,242,232,.45); flex-wrap:wrap; gap:12px;
+  }
+
+  @media (max-width: 860px){
+    .posts{grid-template-columns:1fr 1fr;}
+    .venue-grid{grid-template-columns:1fr; gap:36px;}
+    .venue.reverse .venue-grid{direction:ltr;}
+    .foot-top{grid-template-columns:1fr 1fr; gap:36px;}
+    .foot-top > div:first-child{grid-column:1 / -1;}
+    .venue{padding:72px 0;}
+  }
 </style>
-
 </head>
-
 <body>
 
-<img src="logo.png" alt="White Sand Club">
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <span class="eyebrow">Praia da Areia Branca · Lourinhã</span>
+    <h1>White Sand<br><em>Club</em></h1>
+    <p class="lede">Quatro espaços, um só areal. Restauração, bar e convívio junto ao Atlântico, onde a Areia Branca encontra a Lourinhã.</p>
+  </div>
+  <svg class="tide" viewBox="0 0 1440 90" preserveAspectRatio="none">
+    <path fill="#F6F2E8" d="M0,48 C240,90 480,0 720,32 C960,64 1200,16 1440,48 L1440,90 L0,90 Z"></path>
+  </svg>
+  <div class="scroll-cue"><span>Descer</span><span class="line"></span></div>
+</section>
+
+<!-- SIGNPOST NAV -->
+<section class="signpost">
+  <div class="wrap">
+    <div class="kicker">
+      <span class="eyebrow">Os quatro espaços</span>
+      <h2>Escolha o seu caminho</h2>
+    </div>
+    <div class="posts">
+      <a class="post" href="#pratus"><span class="n">01 · Restaurante</span><span class="t">100 Pratus</span></a>
+      <a class="post" href="#muralha"><span class="n">02 · Bar de praia</span><span class="t">Muralha Bar</span></a>
+      <a class="post" href="#agosto"><span class="n">03 · Cervejaria</span><span class="t">Agosto</span></a>
+      <a class="post" href="#golfinho"><span class="n">04 · Caffé &amp; Games</span><span class="t">Golfinho</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- 100 PRATUS -->
+<section class="venue" id="pratus">
+  <div class="wrap venue-grid">
+    <div class="photo-block p1"><span class="ph-label">Foto do 100 Pratus — por adicionar</span></div>
+    <div>
+      <span class="tag tag-1">Restaurante · Cafetaria · Bar</span>
+      <h3>100 Pratus</h3>
+      <p class="desc">Em cima do Passeio do Mar, de frente para a Praia da Areia Branca. Café pela manhã, refeição ao almoço, cocktail ao pôr do sol — com música ao vivo em muitas noites de verão. A casa é conhecida pelos pratos de marisco e peixe fresco.</p>
+      <ul class="meta">
+        <li><span class="k">Morada</span><span>Passeio do Mar, nº3, Praia da Areia Branca, Lourinhã</span></li>
+        <li><span class="k">Telefone</span><span>261 419 565</span></li>
+        <li><span class="k">Horário</span><span>Seg, Ter, Qui–Dom · 9h–2h &nbsp;·&nbsp; Quarta encerrado</span></li>
+        <li><span class="k">Email</span><span><a href="mailto:100pratos@whitesandclub.pt">100pratos@whitesandclub.pt</a></span></li>
+      </ul>
+      <div class="actions">
+        <a class="btn solid" href="tel:+351261419565">Ligar</a>
+        <a class="btn ghost" href="https://www.facebook.com/100PRATUS/" target="_blank" rel="noopener">Facebook</a>
+        <a class="btn ghost" href="https://www.instagram.com/100pratus/" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MURALHA BAR -->
+<section class="venue reverse" id="muralha">
+  <div class="wrap venue-grid">
+    <div>
+      <span class="tag tag-2">Bar de praia</span>
+      <h3>Muralha Bar</h3>
+      <p class="desc">O bar de sempre da Areia Branca — para muita gente, parte das memórias de infância na praia. Ambiente descontraído junto à muralha, aberto até tarde, todos os dias da semana à exceção de segunda.</p>
+      <ul class="meta">
+        <li><span class="k">Morada</span><span>Passeio do Mar, Praia da Areia Branca, Lourinhã</span></li>
+        <li><span class="k">Horário</span><span>Terça a Domingo · 10h30–4h</span></li>
+        <li><span class="k">Avaliação</span><span>4,4 ★ no Google</span></li>
+        <li><span class="k">Email</span><span><a href="mailto:muralhabar@whitesandclub.pt">muralhabar@whitesandclub.pt</a></span></li>
+      </ul>
+      <div class="actions">
+        <a class="btn solid" href="https://www.facebook.com/muralha.bar/" target="_blank" rel="noopener">Facebook</a>
+        <a class="btn ghost" href="https://www.instagram.com/muralha_bar/" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+    <div class="photo-block p2"><span class="ph-label">Foto do Muralha Bar — por adicionar</span></div>
+  </div>
+</section>
+
+<!-- AGOSTO -->
+<section class="venue" id="agosto">
+  <div class="wrap venue-grid">
+    <div class="photo-block p3"><span class="ph-label">Foto do Agosto — por adicionar</span></div>
+    <div>
+      <span class="tag tag-3">Cervejaria</span>
+      <h3>Agosto</h3>
+      <p class="desc">A cervejaria mais recente do grupo, na Areia Branca. Espaço pensado para petiscar e beber uma imperial bem gelada em bom ambiente, com vista sobre o mar e música ambiente relaxante.</p>
+      <ul class="meta">
+        <li><span class="k">Morada</span><span>R. da Foz, 2530-222 Lourinhã</span></li>
+        <li><span class="k">Horário</span><span>Qua–Sáb · 12h–15h e 18h–23h &nbsp;·&nbsp; Dom · 12h–23h &nbsp;·&nbsp; Seg e Ter encerrado</span></li>
+        <li><span class="k">Avaliação</span><span>4,2 ★ no Google</span></li>
+        <li><span class="k">Email</span><span><a href="mailto:agosto@whitesandclub.pt">agosto@whitesandclub.pt</a></span></li>
+      </ul>
+      <div class="actions">
+        <a class="btn ghost" href="https://www.instagram.com/a_gosto.cervejaria/" target="_blank" rel="noopener">Instagram</a>
+      </div>
+      <p class="note">Sem Facebook próprio encontrado — se existir, envia-me o link para adicionar.</p>
+    </div>
+  </div>
+</section>
+
+<!-- GOLFINHO -->
+<section class="venue reverse" id="golfinho">
+  <div class="wrap venue-grid">
+    <div>
+      <span class="tag tag-4">Caffé · Burguer · Games</span>
+      <h3>Golfinho</h3>
+      <p class="desc">Hambúrgueres, saladas e uma sala de jogos para os mais novos — o espaço mais familiar do grupo, na Alameda do Golfinho. Café da manhã à noite, com sugestões que mudam ao longo do ano.</p>
+      <ul class="meta">
+        <li><span class="k">Morada</span><span>Alameda do Golfinho, nº7, Praia da Areia Branca, Lourinhã</span></li>
+        <li><span class="k">Telefone</span><span>261 469 589</span></li>
+        <li><span class="k">Email</span><span><a href="mailto:golfinho@whitesandclub.pt">golfinho@whitesandclub.pt</a></span></li>
+      </ul>
+      <div class="actions">
+        <a class="btn solid" href="tel:+351261469589">Ligar</a>
+        <a class="btn ghost" href="https://www.facebook.com/GolfinhoCaffeBurguer" target="_blank" rel="noopener">Facebook</a>
+      </div>
+    </div>
+    <div class="photo-block p4"><span class="ph-label">Foto do Golfinho — por adicionar</span></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <h2>White Sand Club</h2>
+        <p class="lede">Restauração e bebidas na Praia da Areia Branca, Lourinhã, desde há mais de uma década. Quatro espaços, uma só vista de mar.</p>
+      </div>
+      <div class="foot-col">
+        <span class="eyebrow">Espaços</span>
+        <ul class="foot-list">
+          <li><a href="#pratus">100 Pratus</a></li>
+          <li><a href="#muralha">Muralha Bar</a></li>
+          <li><a href="#agosto">Agosto</a></li>
+          <li><a href="#golfinho">Golfinho</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <span class="eyebrow">Email por espaço</span>
+        <ul class="foot-list">
+          <li><a href="mailto:100pratos@whitesandclub.pt">100pratos@whitesandclub.pt</a></li>
+          <li><a href="mailto:muralhabar@whitesandclub.pt">muralhabar@whitesandclub.pt</a></li>
+          <li><a href="mailto:agosto@whitesandclub.pt">agosto@whitesandclub.pt</a></li>
+          <li><a href="mailto:golfinho@whitesandclub.pt">golfinho@whitesandclub.pt</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <span class="eyebrow">Geral</span>
+        <ul class="foot-list">
+          <li><a href="mailto:geral@whitesandclub.pt">geral@whitesandclub.pt</a></li>
+          <li><a href="tel:+351261471242">261 471 242</a></li>
+          <li>Alameda Golfinho, Edifício Golfinho<br>2530-211 Praia da Areia Branca</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>White Sand Club, Unipessoal Lda · NIF 509889158</span>
+      <span>whitesandclub.pt</span>
+    </div>
+  </div>
+</footer>
 
 </body>
 </html>
